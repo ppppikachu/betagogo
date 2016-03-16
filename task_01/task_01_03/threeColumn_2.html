@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>threeColumn_position</title>
+<style type="text/css">
+#mydiv{
+	background-color: #eee;
+	margin:20px;
+	padding: 20px;
+	border: solid 1px #999;
+	overflow:auto;;
+	position: relative;
+}
+
+#left {
+
+	position: absolute;
+	left: 10px;
+	width: 160px;
+	height: 100px;
+	padding: 20px;
+}
+        
+#right{
+
+	position: absolute;
+	right: 10px;
+	width: 80px;
+	height: 260px;
+	padding: 20px;/*absolute已经脱离文档流，无法撑开父元素;*/
+}
+        
+#middle{
+	margin-left: 220px;
+	margin-right: 140px;
+	height: 200px;
+	padding: 20px;
+}
+.content{
+	background-color: #DACEE6
+}
+</style>
+</head>
+
+<body>
+<div id="mydiv">
+	<div class="content" id="left"> </div>
+	<div class="content" id="right"></div>
+	<div class="content" id="middle">
+		<h3>关于我们</h3>
+		<p>跟aplha狗的风啊，取了一个霸气的名字，希望有个好的开始！！下面开始凑字数</p>
+		<p>position共有四种属性：static、relative、absolute、fixed，relative是相对定位，fixed、absolute是绝对定位.</p>
+		<p>fixed是相对于整个页面的绝对定位，真正的“绝对”！，或者说是固定定位。而absolute的绝对是相对于上一级相对定位的父元素</p>
+		<p>当设置为absolute,元素脱离文档流，高度无法撑开父元素，所以父元素的高度这里采用js控制的，感觉比较鸡肋，这种情境下还是用float比较合适</p>
+	</div>
+</div>
+
+<script type="text/javascript">
+ var heightLeft=document.getElementById("left").offsetHeight;
+ var heightRight=document.getElementById("right").offsetHeight;
+ var heightMiddle=document.getElementById("middle").offsetHeight;
+
+ if(heightLeft>heightRight){
+ 	x=heightLeft;
+ }else
+ 	x=heightRight;
+ if(x>heightMiddle){
+ 	y=x;
+ }else
+ 	y=heightMiddle;
+//alert(y);
+document.getElementById("mydiv").style.height=y+"px";
+
+</script>
+</body>
+
+</html>
