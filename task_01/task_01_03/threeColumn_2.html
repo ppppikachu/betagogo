@@ -27,7 +27,7 @@
 	position: absolute;
 	right: 20px;
 	width: 80px;
-	height: 260px;
+	height: 300px;
 	padding: 20px;/*absolute已经脱离文档流，无法撑开父元素;*/
 }
         
@@ -40,13 +40,25 @@
 .content{
 	background-color: #DACEE6
 }
+.logo{
+	width: 85px;
+	height: 85px;
+	margin-bottom: 15px;
+
+}
 </style>
 </head>
 
 <body>
 <div id="mydiv">
-	<div class="content" id="left"> </div>
-	<div class="content" id="right"></div>
+	<div class="content" id="left"> 
+		<img class="logo" src="image/3.jpeg"></img>
+	</div>
+	<div class="content" id="right">
+		<img class="logo" src="image/1.jpeg"></img>
+		<img class="logo" src="image/2.jpeg"></img>
+		<img class="logo" src="image/3.jpeg"></img>
+	</div>
 	<div class="content" id="middle">
 		<h3>关于我们</h3>
 		<p>跟aplha狗的风啊，取了一个霸气的名字，希望有个好的开始！！下面开始凑字数</p>
