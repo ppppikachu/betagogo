@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>定位和居中</title>
+<style type="text/css">
+#mydiv{
+	background-color: #ccc;
+	width: 400px;
+	height: 200px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -200px;
+	margin-top: -100px;
+	overflow: hidden;
+}
+.circle{
+	background-color: #fc0;
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+	position: absolute;
+	
+}
+.left{
+	top: -50px;
+	left: -50px;
+}
+.right{
+	bottom: -50px;
+	right: -50px;
+}
+</style>
+</head>
+
+<body>
+<div id="mydiv">
+	<div class="left circle"></div>
+	<div class="right circle"></div>
+</div>
+</body>
+</html>
