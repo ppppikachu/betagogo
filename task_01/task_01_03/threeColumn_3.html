@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>threeColumn_flex</title>
+<style type="text/css">
+div{
+	background: white;
+}
+.mydiv{
+	margin: 20px;
+	padding: 20px;
+	border: 1px solid #999;
+	background: #eee;	
+	display: flex;
+	align-items: flex-start;
+}
+
+.left {
+	width: 160px;
+	height: 80px;
+	padding: 20px;
+	border: 1px solid #999;
+	position: relative;;
+		
+}
+.left span{
+	position: absolute;
+	width: 65px;
+	right: 20px;
+	word-wrap: break-word;
+}
+        
+.right{
+	width:80px; 
+	border: 1px solid #999;
+	padding: 20px;
+	padding-bottom: 5px;
+	
+}
+        
+.middle{
+	border: 1px solid #999;
+	padding: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	flex-grow: 1;
+	height: auto;
+	
+}
+.logo{
+	width: 80px;
+	height: 80px;
+	padding-bottom: 15px;
+}
+
+</style>
+</head>
+
+<body>
+<div class="mydiv">
+	<div class="left"> 
+		<img class="logo" src="image/3.jpeg"></img>
+		<span>Betagogo</span>
+	</div>
+	
+	<div class="middle">
+		<h3>关于我们</h3>
+		<p>跟aplha狗的风啊，取了一个霸气的名字，希望有个好的开始！！下面开始凑字数</p>
+	</div>
+	<div class="right">
+		<img class="logo" src="image/1.jpeg"></img>
+		<img class="logo" src="image/2.jpeg"></img>
+		<img class="logo" src="image/3.jpeg"></img>
+	</div>
+	<!-- <div class="clearfix"></div> -->
+</div>
+</body>
+</html>
