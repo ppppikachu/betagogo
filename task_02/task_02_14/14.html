@@ -40,10 +40,12 @@ var aqiData = [
   superb.sort(function(a,b){
     return b[1]-a[1];
   })
-
-  for (var i = 0; i <superb.length; i++) {
-    ulList.innerHTML += "<li>第"+(i+1)+"名："+superb[i][0]+","+superb[i][1]+"</li>";
+ 
+  var str="";
+  for (var i = 0 ,l=superb.length; i <l; i++) {
+    str += "<li>第"+(i+1)+"名："+superb[i][0]+","+superb[i][1]+"</li>";
   }
+  ulList.innerHTML=str;
 
 })();
 

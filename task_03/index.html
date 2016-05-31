@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+.group{
+	width: 900px;
+	height: 500px;
+	position: relative;
+	margin-bottom: 20px; 
+
+}
+.group>img{
+	position: absolute;
+}
+
+.gallery-2>.left{
+	 width: 66.66%;
+	 height: 100%;
+	-webkit-clip-path:polygon(0% 0%,100% 0%,50% 100%,0% 100%);
+    clip-path:polygon(0% 0%,100% 0%,50% 100%,0% 100%);
+
+}
+.gallery-2>.right{
+	width: 66.66%;
+	 height: 100%;
+	-webkit-clip-path:polygon(50% 0%,100% 0%,100% 100%,0% 100%);
+    clip-path:polygon(50% 0%,100% 0%,100% 100%,0% 100%);
+    left: 33.33%;
+}
+/*.gallery-2>.left{
+	-webkit-clip-path:url('clipPath.svg#clip1');
+   clip-path:url('clipPath.svg#clip1');
+   width: 500px;
+}*/
+.gallery-3>.second{
+	right:0;	
+}
+.gallery-3>.third{
+	right: 0;
+	top: 50%;	
+}
+.gallery-4>.second{
+	left: 50%;	
+}
+.gallery-4>.third{
+	top: 50%;	
+}
+.gallery-4>.fourth{
+	left: 50%;	
+	top: 50%;
+}
+.gallery-5>.second{
+	right: 0;	
+}
+.gallery-5>.third{
+	right:0;
+	bottom: 0;	
+}
+.gallery-5>.fourth{
+	left: 33.33%;	
+	bottom: 0;
+}
+.gallery-5>.fifth{	
+	bottom: 0;
+}
+.gallery-6>.second{
+	right: 0;
+	bottom: 66.6%	
+}
+.gallery-6>.third{
+	right:0;
+	bottom:33.3%;	
+}
+.gallery-6>.fourth{
+	right: 0;	
+	bottom: 0;
+}
+.gallery-6>.fifth{	
+	right: 33.3%;
+	bottom: 0;
+}
+.gallery-6>.sixty{	
+	right: 66.6%;
+	bottom: 0;
+}
+</style>
+</head>
+
+<body>
+<div class="group gallery-1">
+  <img src="image/pic1.jpg">		
+</div>
+<div class="group gallery-2">
+  <img class="left" src="image/pic1.jpg" >
+  <img class="right" src="image/pic2.jpg" >		
+</div>
+<div class="group gallery-3">
+  <img class="first" src="image/pic1.jpg">
+  <img class="second" src="image/pic2.jpg">
+  <img class="third" src="image/pic3.jpg">
+</div>
+<div class="group gallery-4">
+  <img class="first" src="image/pic1.jpg">
+  <img class="second" src="image/pic2.jpg">
+  <img class="third" src="image/pic3.jpg">
+  <img class="fourth" src="image/pic4.jpg">		
+</div>
+<div class="group gallery-5">
+  <img class="first" src="image/pic1.jpg">
+  <img class="second" src="image/pic2.jpg">
+  <img class="third" src="image/pic3.jpg">
+  <img class="fourth" src="image/pic4.jpg">	
+  <img class="fifth" src="image/pic1.jpg">	
+</div>
+<div class="group gallery-6">
+  <img class="first" src="image/pic1.jpg">
+  <img class="second" src="image/pic2.jpg">
+  <img class="third" src="image/pic3.jpg">
+  <img class="fourth" src="image/pic4.jpg">	
+  <img class="fifth" src="image/pic1.jpg">	
+  <img class="sixty" src="image/pic2.jpg">
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var divWidth=900;
+    var divHeight=500;
+
+    /*position 1代表相对位置为左和上，2代表右和上，3代表右和下，4代表左和下*/
+    
+	function clipPicture(width,height,picture,position){
+		
+       var w=picture.width;
+       var h=picture.height;
+
+       if (w/h>width/height) {
+
+       	   var clipW=(height*w/h-width)/2;
+       	   picture.style.height=height+"px";  
+           picture.style.clip="rect(0px "+(width+clipW)+"px "+height+"px "+clipW+"px)"; 
+           if (position==1||position==4) {
+           	 picture.style.marginLeft=-clipW+"px";
+           }else if (position==2||position==3) {
+              picture.style.marginRight=-clipW+"px";
+           } 
+           
+
+       }else if (w/h<width/height) {
+           var clipH=(width*h/w-height)/2;
+           picture.style.width=width+"px";           
+           picture.style.clip="rect("+clipH+"px "+width+"px "+(height+clipH)+"px 0px)";
+           if (position==1||position==2) {
+           	 picture.style.marginTop=-clipH+"px";
+           }else if (position==4||position==3) {
+              picture.style.marginBottom=-clipH+"px";
+           } 
+           
+       }
+	}
+
+    var picture1=document.getElementsByClassName("gallery-1")[0].getElementsByTagName("img")[0];
+	picture1.onload=function(){
+		clipPicture(divWidth,divHeight,picture1,1);
+
+	}
+
+    var picture3=document.getElementsByClassName("gallery-3")[0].getElementsByTagName("img");
+	picture3[0].onload=function(){
+		clipPicture(divWidth-divHeight/2,divHeight,picture3[0],1);
+	}
+	for (var i = 1; i < 3; i++) {
+        (function(num){
+			picture3[num].onload=function(){
+			  clipPicture(divHeight/2,divHeight/2,picture3[num],2);
+	        }
+	    })(i);
+	}
+
+	var picture4=document.getElementsByClassName("gallery-4")[0].getElementsByTagName("img");
+	for (var i = 0; i < picture4.length; i++) {
+        (function(num){
+			picture4[num].onload=function(){
+			  clipPicture(divWidth/2,divHeight/2,picture4[num],1);
+	        }
+	    })(i);
+	}
+
+	var picture5=document.getElementsByClassName("gallery-5")[0].getElementsByTagName("img");
+	picture5[0].onload=function(){
+		clipPicture(divWidth*2/3,divHeight*2/3,picture5[0],1);
+	}
+	picture5[1].onload=function(){
+		clipPicture(divWidth/3,divWidth/3,picture5[1],2);
+	}
+	picture5[2].onload=function(){
+		clipPicture(divWidth/3,divHeight-divWidth/3,picture5[2],3);
+	}
+	for (var i = 3; i < 5; i++) {
+        (function(num){
+			picture5[num].onload=function(){
+			  clipPicture(divWidth/3,divHeight/3,picture5[num],4);
+	        }
+	    })(i);
+	}
+
+    var picture6=document.getElementsByClassName("gallery-6")[0].getElementsByTagName("img");
+    picture6[0].onload=function(){
+		clipPicture(divWidth*2/3,divHeight*2/3,picture6[0],1);
+	}
+	for (var i = 1; i < 6; i++) {
+        (function(num){
+			picture6[num].onload=function(){
+			  clipPicture(divWidth/3,divHeight/3,picture6[num],3);
+	        }
+	    })(i);
+	}
+	alert(picture1.style.cssText);
+
+</script>
