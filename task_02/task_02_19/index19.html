@@ -136,7 +136,7 @@ var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#
                 render();
                 break;
          	case "rightOut":
-                numArray.pop(numArray);
+                numArray.pop();
                 render();             
                 break;
           case "random":
@@ -270,13 +270,13 @@ var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#
           var position=getClickIndex(target);
           if (position>-1) {
               numArray.splice(position,1);
-              target.parentNode.removeChild(target);
+              render();
           }		
     	}      
 
   //获取点击元素的位置
     function getClickIndex(node) {
-      if (node.id == "result"){
+      if (node.id == "show"){
           return -1;
       }else{
         return Array.prototype.indexOf.call(node.parentNode.children, node);

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 02_19</title>
+
+    <style type="text/css">
+    /*#show{
+      height: 350px;
+      position: relative;;
+    }*/
+      #show div{      
+        float: left;
+         width: 50px;
+         height:50px;
+         line-height: 50px;
+         margin: 15px;
+         color:white;
+         text-align:center;
+         background:#99b4ce; 
+      }
+      #show>div span{
+        color: #FFFFAA;
+      }
+      
+    </style>
+  </head>
+<body>
+<div id="operate">
+  <textarea id="num-input" type="text"></textarea> 
+  <button id="leftIn">左侧入</button>
+  <button id="rightIn">右侧入</button>
+  <button id="leftOut">左侧出</button>
+  <button id="rightOut">右侧出</button>
+  <input id="find-input" type="text"></input> 
+  <button id="find">查询</button>
+</div>
+<div id="show">
+	
+</div>
+<script type="text/javascript">
+
+var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#b38e95','#5a4563','#4e4a67'];
+
+    var numArray=[];
+    var operate=document.getElementById("operate");
+    var show=document.getElementById("show");
+
+    String.prototype.trim=function(){
+　　    return this.replace(/(^\s*)|(\s*$)/g, "");
+　　 }           
+    $ = function (el) { return document.querySelector(el); };
+    $$ = function (el) { return document.querySelectorAll(el); };
+
+    
+    //事件跨浏览器
+    var EventUtil={
+    	addHandler:function(element,type,handler){
+           if (element.addEventListener) {
+           	 element.addEventListener(type,handler,false);
+           }else if (element.attachEvent) {
+           	  element.attachEvent("on"+type,handler);
+           }else{
+           	 element["on"+type]=handler;
+           }
+    	},
+
+    	removeHandler:function(element,type,handler){
+           if (element.removeEventListener) {
+           	  element.removeEventListener(type,handler,false);
+           }else if (element.detachEvent) {
+           	   element.detachEvent("on"+type,handler);
+           }else{
+           	   element["on"+type]=null;
+           }
+    	},
+
+        getEvent:function(event){
+        	return event ? event : window.event;
+        },
+
+    	getTarget:function(event){
+            return event.target||event.srcElement;
+    	}
+    }
+
+    
+
+    //按钮事件监听，处理数据并渲染
+    function handler(event){
+       
+         event=EventUtil.getEvent(event);
+         var target=EventUtil.getTarget(event);
+         // alert(target);
+         var inputValue=document.getElementById("num-input").value;
+         var data=getValue(inputValue);
+
+         var findValue=document.getElementById("find-input").value.trim();
+
+
+         switch(target.id){
+         	case "leftIn": 
+                if (data) {
+                  numArray=data.concat(numArray);
+                  renderAll(); 
+                }        	                                		                            		               
+                break;
+         	case "rightIn": 
+                if (data) {
+                  numArray=numArray.concat(data);
+                  renderAll(); 
+                }                           	         		
+                break;
+         	case "leftOut":  
+               if (numArray) {
+                  numArray.shift();
+                  renderAll();
+                  
+               }else{
+                 alert("队列已空");
+               }  
+               break;     	
+                
+         	case "rightOut":
+                if (numArray) {
+                  numArray.pop();
+                  renderAll(); 
+                }else{
+                   alert("队列已空");
+                }             
+                break;
+          case "find":
+                renderAll(findValue);
+         	default:
+         	   break;
+
+         }                        
+    }
+
+     //数据提取
+    function getValue(value){
+       var data=[];
+       data=value.split(/[^A-Za-z0-9\u4e00-\u9fa5]+/);
+       var l=data.length;
+       if (!data[0]) {
+        data.shift();
+       }
+       if (l > 1 && !data[l-1]) {
+         data.pop();
+       }                                                                  
+       return data;
+    }
+
+  //针对单个操作单独渲染（弃用）
+    function render(data,location){  
+      if (data==null) {
+
+         show.removeChild(location==="right"? show.lastChild : show.firstChild);
+      }else{
+
+        var str="";
+        for (var i = 0,l=data.length; i < l; i++) {
+          str+="<div>"+numArray[i]+"</div>";
+        }
+         
+        if (location==="left") {
+          show.innerHTML=str+show.innerHTML;
+        }else if (location==="right") {
+          show.innerHTML+=str;
+        }
+      }    
+              
+    }
+   
+    //由于加上查询，针对操作的渲染比较费劲，所以统一渲染
+    function renderAll(value){
+       show.innerHTML = numArray.map(function(item){
+          if (value) {
+             item = item.replace(new RegExp(value,'g'),"<span>" + value + "</span>" );
+          }
+          return "<div>" + item + "</div>";
+       }).join('');       
+    }
+
+    //加删除元素事件(整体)
+    function deleteEvent(event){
+          event=EventUtil.getEvent(event);
+          var target=EventUtil.getTarget(event);
+          var position=getClickIndex(target);
+          if (position>-1) {
+              numArray.splice(position,1);
+              target.parentNode.removeChild(target);
+          }		
+    	}      
+
+  //获取点击元素的位置
+    function getClickIndex(node) {
+      if (node.id == "result"){
+          return -1;
+      }else{
+        return Array.prototype.indexOf.call(node.parentNode.children, node);
+      }
+      
+    }
+
+    EventUtil.addHandler(show,"click",deleteEvent);
+    EventUtil.addHandler(operate,"click",handler);
+    
+</script>
+</body>
+</html>
