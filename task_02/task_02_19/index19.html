@@ -44,9 +44,10 @@
 </div>
 <script type="text/javascript">
 /***
-   数据存放在数组
-   每次增加元素或删除元素，都会根据numArray全部重新渲染；
-   元素的背景颜色每次渲染都会重新改变改变   
+   数据存放在数组；
+   排序每intervalTime时间做一次比较，如果需要交换，两个div的高度动态减少或增加，约每 intervalTime/10时间内增加（减少一次）； 
+   点击删除事件使用事件委托，事件加载在show上
+   将要比较的div颜色为 wait，正在交换的div颜色为swap，已经比较过或位置不会再动的div颜色为nomal
 **/
 var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#b38e95','#5a4563','#4e4a67'];
 
@@ -54,6 +55,7 @@ var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#
     var intervalTime=100;//排序时的运行时间间隔
     var operate=document.getElementById("operate");
     var show=document.getElementById("show");
+    var isSwap =false;
 
     
     String.prototype.trim=function(){
@@ -61,6 +63,7 @@ var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#
 　　 }
     $ = function (el) { return document.querySelector(el); };
     $$ = function (el) { return document.querySelectorAll(el); };
+
     
     //事件跨浏览器
     var EventUtil={
@@ -97,10 +100,15 @@ var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#
 
     //按钮事件监听，处理数据并渲染
     function handler(event){
+        if (isSwap) {
+          alert('正在排序');
+          return;
+        }
          event=EventUtil.getEvent(event);
          var target=EventUtil.getTarget(event);
          // alert(target);
          var inputValue=document.getElementById("num-input").value.trim();
+
 
          switch(target.id){
          	case "leftIn":
@@ -150,7 +158,7 @@ var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#
 
  //冒泡排序
     function bubble(numArray){
-
+      isSwap = true;
       var num,i=0,l=numArray.length,j=0;
       renderWait(l);
       var timer=function(){
@@ -173,6 +181,8 @@ var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#
                     
         if (i<l) {
           setTimeout(arguments.callee,intervalTime);
+        }else{
+          isSwap=false;
         }
     } 
     setTimeout(timer,intervalTime); 
