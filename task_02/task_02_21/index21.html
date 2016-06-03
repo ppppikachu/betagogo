@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Task 02_21</title>
+
+    <style type="text/css">
+      body{
+        margin: 0;
+        padding: 0;
+        background: #dedede;
+      }
+      #main{
+         background: white;
+         width: 1000px;
+         margin: 30px auto;
+         padding: 30px;
+         box-shadow:1px 1px 2px 1px #848484; 
+      }
+
+      #tag-input{
+        width: 200px;
+      }
+      
+      #interest{
+        margin-top: 30px;
+      }
+
+      #interest-input{
+        width: 40%;
+        height: 100px;
+        margin-bottom: -10px;
+      }
+      #interest>button{
+        background: #FF8040;
+        border-radius: 5px;
+        padding:8px 13px;
+        color: white;
+        border: 0px;
+        margin-left: 20px;
+      }
+
+      label{
+        display: inline-block;
+        width: 50px;
+        text-align:right;
+        font-weight:bold;
+        vertical-align: top;
+      }
+
+      .show{
+        overflow: auto;
+        margin-left: 40px;
+      }
+      .show div{      
+         float: left;             
+         margin: 5px;
+         padding: 10px 15px;
+         color:white;
+         text-align:center;
+         background:#99b4ce; 
+         border-radius: 8px;
+      }    
+      
+    </style>
+  </head>
+<body>
+  <div id="main">
+    <div id="tag"> 
+      <label>Tag：</label><input id="tag-input" type="text"></input>
+      <div id="tag-show" class="show">
+      </div>
+    </div>
+    <div id="interest">
+      <label>兴趣：</label><textarea id="interest-input" type="text"></textarea> 
+      <button>确认</button>
+      <div id="interest-show" class="show">
+      </div>   	
+    </div>
+  </div>  
+<script src="task.js">
+  
+</script>
+</body>
+</html>

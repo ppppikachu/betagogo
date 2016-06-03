@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>IFE JavaScript Task 02_19</title>
+    <title>Task 02_20</title>
 
     <style type="text/css">
     /*#show{
@@ -160,7 +160,7 @@ var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#
 
         var str="";
         for (var i = 0,l=data.length; i < l; i++) {
-          str+="<div>"+numArray[i]+"</div>";
+          str+="<div>"+data[i]+"</div>";
         }
          
         if (location==="left") {
@@ -195,7 +195,7 @@ var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#
 
   //获取点击元素的位置
     function getClickIndex(node) {
-      if (node.id == "result"){
+      if (node.id == "show"){
           return -1;
       }else{
         return Array.prototype.indexOf.call(node.parentNode.children, node);
