@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Task 02_21</title>
+    <style type="text/css">
+      body{
+        background: #dedede;
+      }
+      #main{
+         background: white;
+         width: 1200px;
+         margin: 30px auto;
+         padding: 30px;
+         box-shadow:1px 1px 2px 1px #848484; 
+      }
+      #main div{
+      	display: -webkit-flex; /* Safari */
+		display: flex;
+      	border: 1px solid;
+      	justify-content: space-around;
+      	align-items: center;
+      	background-color: white;
+      	height: 70%;
+      	width: 40%;
+      }
+      #main>.first{
+      	 width: 1000px;
+      	 height:300px;
+      	 margin: 50px auto; 
+      }
+     #main>#select{
+     	display: block;
+     	margin-left: 90px;
+     	border: 0px;
+     }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div class="first" >
+      	<div class="second">
+      		<div class="third">
+      			<div class="fourth"></div>
+      			<div class="fourth"></div>
+      		</div>
+      		<div class="third">
+      			<div class="fourth"></div>
+      			<div class="fourth"></div>
+      		</div>
+      	</div>
+      	<div class="second">
+      		<div class="third">
+      			<div class="fourth"></div>
+      			<div class="fourth"></div>
+      		</div>
+      		<div class="third">
+      			<div class="fourth"></div>
+      			<div class="fourth"></div>
+      		</div>
+      	</div>
+      </div>
+      <div id="select"> 
+      <input name="seq" type="radio" value="1" checked="true">前序</input>
+      <input name="seq" type="radio" value="2">中序</input>
+      <input name="seq" type="radio" value="3">后序</input>
+      <button>遍历</button>
+      </div>
+  	</div>
+  </body>
+  <script type="text/javascript">
+  
+  var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#b38e95','#5a4563','#4e4a67'];
+
+  	$ = function(el){ return document.querySelector(el);}
+  	$$ = function(el){ return document.querySlectorAll(el); }
+
+  	var tree = $('.first');
+  	var begin = $('button');
+  	var interval=1000;
+  	var elStack = [];
+  	
+//获取radio的值
+  	function getRadioValue(name){
+       var select = document.getElementsByName(name);
+
+       for (var i = 0 , l = select.length; i < l; i++) {
+       	  if (select[i].checked) {
+       	  	return select[i].value;
+       	  }
+       }
+  	}
+
+  	
+    //1是前序，2是中序，3是后序，按要出现的顺序将div元素放进elStack数组
+  	function sortTree(sel){
+  		switch (sel){
+      	    case '1':
+      	       return function sortStack(el){
+			  		if (el) {
+				  		elStack.push(el);
+				  		sortStack(el.firstElementChild);
+				  		sortStack(el.lastElementChild);
+			  	    }
+			  	  }	
+	      	    break;
+      	    case '2':
+      	        return function sortStack(el){
+			  		if (el) {
+				  		
+				  		sortStack(el.firstElementChild);
+				  		elStack.push(el);
+				  		sortStack(el.lastElementChild);
+			  	    }
+			  	  }	
+	      	    break;
+      	    case '3':
+      	        return function sortStack(el){
+			  		if (el) {
+				  		
+				  		sortStack(el.firstElementChild);				  		
+				  		sortStack(el.lastElementChild);
+				  		elStack.push(el);
+			  	    }
+			  	  }	
+	      	    break;
+      	    default:
+	      	    break;
+      }
+
+        
+	}
+
+//将elStack数组中的div元素每隔intervams依次显示为蓝色
+	function setColor(i,l){
+  		if (i<l) {
+  			elStack[i].style.backgroundColor = colors[0];
+
+	        setTimeout(function(){
+	           elStack[i].style.backgroundColor = 'white';
+	           i++;
+	           setColor(i,l);
+	        },interval);
+  		}else{
+           elStack = [];
+           begin.disabled = false;
+  		}    
+  	}
+    
+    //点击按钮开始运行
+     begin.onclick = function(){
+     	begin.disabled = true;
+
+        var sel = getRadioValue('seq');
+        sortTree(sel)(tree);
+        var i=0,l=elStack.length;
+
+        setColor(i,l);
+     	
+     }
+
+  
+  </script>
+</html>
