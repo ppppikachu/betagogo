@@ -55,4 +55,4 @@
 
 ###第三阶段
 
-[任务三十四](http://ppppikachu.github.io/betagogo/task_03/index.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/master/task_03)
+[任务三十四](http://ppppikachu.github.io/betagogo/task_03/index.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/gh-pages/task_03)
