@@ -7,13 +7,13 @@
 [任务二](http://ppppikachu.github.io/betagogo/task_01/task_01_02/index.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/master/task_01/task_01_02) 
 
 
-[任务三](http://ppppikachu.github.io/betagogo/task_01/task_01_03/threeCloumn_2.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/master/task_01/task_01_03)
+[任务三](http://ppppikachu.github.io/betagogo/task_01/task_01_03/threeColumn_2.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/master/task_01/task_01_03)
 
 
-[任务四](http://ppppikachu.github.io/betagogo/task_01/task_01_04/center.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/master/task_01/task_01_04) 
+[任务四](http://ppppikachu.github.io/betagogo/task_01/task_01_04/center.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/gh-pages/task_01/task_01_04) 
 
 
-[任务六](http://ppppikachu.github.io/betagogo/task_01/task_01_06/index.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/master/task_01/task_01_06) 
+[任务六](http://ppppikachu.github.io/betagogo/task_01/task_01_06/index.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/gh-pages/task_01/task_01_06) 
 
 
 [任务八](http://ppppikachu.github.io/betagogo/task_01/task_01_08/grids.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/master/task_01/task_01_08) 
@@ -42,7 +42,7 @@
 [任务十八](http://ppppikachu.github.io/betagogo/task_02/task_02_18/index2.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/master/task_02/task_02_18)
 
 
-[任务十九](http://ppppikachu.github.io/betagogo/task_02/task_02_19/index19.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/master/task_02/task_02_19)
+[任务十九](http://ppppikachu.github.io/betagogo/task_02/task_02_19/index19.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/gh-pages/task_02/task_02_19)
 
 
 [任务二十](http://ppppikachu.github.io/betagogo/task_02/task_02_20/index20.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/master/task_02/task_02_20)
