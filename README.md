@@ -4,7 +4,7 @@
 
 ###第一阶段
 
-[任务二](http://ppppikachu.github.io/betagogo/task_01/task_01_02/index.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/gh-pages/task_01/task_01_02) 
+[任务二](http://ppppikachu.github.io/betagogo/task_01/task_01_02/index.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/gh-pages/task_01/task_01_02) &nbsp;&nbsp;[任务说明](http://ife.baidu.com/task/detail?taskId=2) 
 
 
 [任务三](http://ppppikachu.github.io/betagogo/task_01/task_01_03/threeColumn_2.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/gh-pages/task_01/task_01_03)
@@ -52,6 +52,9 @@
 
 
 [任务二十二](http://ppppikachu.github.io/betagogo/task_02/task_02_22/index22.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/gh-pages/task_02/task_02_22)
+
+
+[任务二十三](http://ppppikachu.github.io/betagogo/task_02/task_02_23/index23.html) &nbsp; &nbsp; [代码地址](https://github.com/ppppikachu/betagogo/tree/gh-pages/task_02/task_02_23)
 
 ###第三阶段
 
