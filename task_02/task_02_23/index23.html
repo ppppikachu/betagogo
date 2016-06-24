@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Task 02_23</title>
+    <style type="text/css">
+      body{
+        background: #dedede;
+      }
+      #main{
+         background: white;
+         /*width: 1200px;*/
+         margin: 30px;
+         padding: 30px;
+         box-shadow:1px 1px 2px 1px #848484; 
+      }
+      #main div{
+      	display: -webkit-flex; /* Safari */
+		    display: flex;
+      	border: 1px solid;
+      	justify-content: space-around;
+      	align-items: center;
+      	background-color: white;
+      	height: auto;
+      	width: auto;
+        padding: 1em;
+        margin:0 0.5em;
+      }
+      #main>.first{
+      	 padding: 30px; 
+         margin: 20px;
+      }
+     #main>#select{
+     	display: block;
+     	margin-left: 70px;
+     	border: 0px;
+     }
+     label{
+      margin-left: 90px;
+     }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div class="first" >
+      	<div>
+          <div>
+            <div>aaa</div>
+            <div>aab</div>
+            <div>aac</div>
+            aa
+          </div>
+          <div>
+            <div>aba</div>
+            ab
+          </div>
+          a
+        </div>
+        <div>b</div>
+        <div>
+          <div>
+            <div>caa</div>
+            <div>cab</div>           
+            ca
+          </div>          
+          <div>
+            <div>
+              <div>cbaa</div>
+              cba
+            </div>
+            <div>cbb</div>
+            cb
+          </div>
+          c
+        </div>
+      </div>
+      <div id="select"> 
+      <input name="seq" type="radio" value="1" checked="true">前序</input>
+      <input name="seq" type="radio" value="2">中序</input>
+      <input name="seq" type="radio" value="3">后序</input>
+      <button id="traversal">遍历</button>
+      </div>
+      <label>请输入查找内容:</label>
+      <input id="search-input"></input>
+      <button id="search">查找</button>
+  	</div>
+  </body>
+  <script type="text/javascript">
+  
+  var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#b38e95','#5a4563','#4e4a67'];
+
+  	$ = function(el){ return document.querySelector(el);}
+  	$$ = function(el){ return document.querySlectorAll(el); }
+
+    String.prototype.trim=function(){
+　　    return this.replace(/(^\s*)|(\s*$)/g, "");
+　　 } 
+
+  	var tree = $('.first');
+  	var begin = $('#traversal');
+    var search = $('#search');
+  	var interval=1000;
+  	var elStack = [];//按顺序存放遍历数组
+    var result;//查询包含输入值的div
+  	
+//获取radio的值
+  	function getRadioValue(name){
+       var select = document.getElementsByName(name);
+
+       for (var i = 0 , l = select.length; i < l; i++) {
+       	  if (select[i].checked) {
+       	  	return select[i].value;
+       	  }
+       }
+  	}
+
+  	
+    //1是前序，2是中序，3是后序，按要出现的顺序将div元素放进elStack数组
+  	function sortTree(sel){
+  		switch (sel){
+      	    case '1':
+      	     return function sortStack(el){
+    			  		if (el) {
+    				  		elStack.push(el);
+                  var childrenEl = el.children;
+                  for (var i = 0,l = childrenEl.length; i < l; i++) {
+                      sortStack(childrenEl[i]);
+                  }   				  		
+    			  	  }
+			  	    }	
+	      	    break;
+      	    case '2':
+      	        return function sortStack(el){
+      			  		if (el) {
+      				  		
+      				  		sortStack(el.firstElementChild);
+      				  		elStack.push(el);
+                    var childrenEl = el.children;
+      				  		for (var i = 1,l = childrenEl.length; i < l; i++) {                    
+                        sortStack(childrenEl[i]);
+                    }   
+      			  	  }
+      			  	}	
+	      	    break;
+      	    case '3':
+      	        return function sortStack(el){
+      			  		if (el) {
+      				  		var childrenEl = el.children;
+                    for (var i = 0,l = childrenEl.length; i < l; i++) {
+                        sortStack(childrenEl[i]);
+                    }     
+      				  		elStack.push(el);
+      			  	  }
+			  	      }	
+	      	    break;
+      	    default:
+	      	    break;
+      }
+
+        
+	}
+
+  
+//将elStack数组中的div元素每隔intervams依次显示为蓝色,查找到显示红色
+	function setColor(i,l,value){
+  		if (i<l) {
+  			
+        if (elStack[i].lastChild.data.trim() == value) {
+          elStack[i].style.backgroundColor = 'red';
+          result = elStack[i];
+           elStack = [];
+           begin.disabled = false;
+           search.disabled = false;
+           return;
+
+        }
+        elStack[i].style.backgroundColor = colors[0];
+        setTimeout(function(){
+
+           elStack[i].style.backgroundColor = 'white';
+           i++;
+           setColor(i,l,value);
+        },interval);
+  		}else{
+           elStack = [];
+           begin.disabled = false;
+           search.disabled = false;
+  		}    
+  	}
+    
+
+    function handler(operate){
+      return function(){
+        if (result) {
+          result.style.backgroundColor = 'white';
+          result = null;
+        }
+        begin.disabled = true;
+        search.disabled = true;
+
+        var sel = getRadioValue('seq');//遍历方式
+        sortTree(sel)(tree);
+        if (operate == 1) {
+          setColor(0,elStack.length);
+        }else if (operate == 2) {
+          var value = $('#search-input').value.trim();     
+           setColor(0,elStack.length,value);
+        } 
+      }              
+    }
+
+    //点击按钮开始运行
+    begin.onclick = handler(1);
+    search.onclick = handler(2);
+
+  </script>
+</html>

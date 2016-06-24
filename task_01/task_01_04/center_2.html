@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>center</title>
+<style type="text/css">
+	#mydiv{
+        position: absolute;
+		width: 400px;
+		height: 200px;
+		background: #ccc;
+		left: 50%;
+		top: 50%;
+		margin-top: -100px;
+		margin-left: -200px;
+		overflow: hidden;
+
+	}
+	.left{
+		position: absolute;
+		left: -50px;
+		top: -50px;
+
+	}
+	.right{
+		position: absolute;
+		right: -50px;
+		bottom: -50px;
+
+	}
+	.circle{
+		width: 100px;
+		height: 100px;
+		background: #fc0;
+		border-radius: 50%;
+		
+	}
+</style>
+</head>
+
+<body>
+<div id="mydiv">
+	<div class="left circle"></div>
+	<div class="right circle"></div>
+</div>
+</body>
+</html>

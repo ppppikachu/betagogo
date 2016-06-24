@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>task_1_2</title>
+
+    <style type="text/css">
+    
+    body{
+    	margin: 0;
+    	padding: 0;
+    	background: #dedede;
+    	font-size: 12px;
+    	font-family: 'Microsoft YaHei';
+    }
+    /*导航栏*/
+    header {
+    	width:100%;
+    	background:#333333;
+    	height:60px;
+    	padding: 0,20px;
+    }
+    
+    #logo{
+    	height:50px;
+    	float: left;
+    	margin: auto;
+    }
+
+    header div{
+    	float:right;
+    	margin: auto,0;
+    } 
+    li a{
+    	color: white;
+    	font-size: 12px;
+    	text-decoration: none;
+
+    }
+    header li{
+    	float:left;
+    	margin-left: 20px;
+    }
+
+    /*主体部分*/
+    
+    #first,#second,#third,#fourth,#fifth{
+    	margin: 30px;
+    	padding: 20px 20px;
+    	background: white;
+    	box-shadow: 1px 1px 2px 1px #848484;
+    }
+    #fifth{
+    	margin-right: 50px;
+    }
+    h3{
+    	margin: 0;
+    	padding: 0;
+    	color: #666666;
+    }
+    p{
+    	text-indent: 2em;
+    	font-size: 15px;
+    	line-height: 2em;
+    }
+    .author{
+    	display: block;
+    	padding-top:1.5em;
+    	color:#999999;
+    	padding-right: 1em;
+    	float:left;
+    }
+    .date{
+        display: block;
+    	padding-top:1.5em;
+    	color:#999999;
+
+    }
+    #second ul{
+    	font-size: 15px;
+    }
+
+
+    /*第三部分图片*/
+    .picture{
+    	width: 15%;
+    	height: auto;
+    	font-size: 15px;
+    	margin: 20px 50px;
+    	padding: 1em;
+    	border: 1px solid #808080;
+    	text-align: center;
+    }
+    .picture img{
+    	width: 100%;
+    	height: auto;
+    	margin-top: 8%;
+    }
+
+    /*第四部分表格*/
+    table{
+    	width: 100%;
+    	height: auto;
+    	border:1px solid #e2e2e2;
+    	border-collapse: collapse;
+    	text-align: left; 
+    	font-weight: 15px;  	
+    }
+    th{
+    	background:#333333;
+    	color: white; 
+    	padding: 0.4em;
+    }
+    td{
+    	padding: 0.4em;
+    }
+    .count{
+    	background:#e2e2e2;
+    	font-weight: bold;
+    }   
+
+    /*第五部分表单*/
+    .h-aside{
+    	border-left: #e2e2e2 solid 3px;
+    	padding-left: 0.5em;
+    }
+    label{
+    	width: 30%;
+    	display: inline-block;
+    	text-align:right;
+    }
+    .label-vertical{
+    	vertical-align: top;
+    }
+    .form-group{
+        margin: 10px;
+    }
+    .input-control{
+    	width: 15%;
+    	padding: 0.3em;
+    }
+
+    textarea{
+    	width: 50%;
+    	height: 80px;
+    }
+    form span{
+    	display: block;
+    	margin-left: 30%;
+    	padding-left: 20px;
+    	margin-bottom: 25px;
+    	color: #333;
+    }
+    .right{
+    	margin-left: 10px;
+    }
+    button{
+    	width: 100%;
+    	height: 2.5em;
+    	background: rgb(28, 99, 221);
+    	color: white;
+    	font-size: 18px;
+    	border-radius: 8px;
+    	border: 0;
+    }
+
+    /*footer*/
+    footer{
+    	width: 100%;
+    	height: 60px;
+    	background:#333333;
+    	text-align: center;
+    	color: white;
+    	padding-top: 1.5em;
+    }
+    </style>
+</head>
+<body>
+
+	<header id="nav">
+	    <img id="logo" src="http://img1.bdstatic.com/static/home/widget/search_box_home/logo/home_white_logo_0ddf152.png">
+	    <div class="header-vertical nav-right">
+	        <ul>
+	            <li>
+	            	<a href="">导航链接一</a>
+	            </li>
+	            <li>
+	            	<a href="">导航链接二</a>
+	            </li>
+	            <li>
+	            	<a href="">导航链接三</a>
+	            </li>
+	            <li>
+	            	<a href="">导航链接四</a>
+	            </li>
+	        </ul>
+	    </div>
+
+	</header>
+	<div id="main">
+		<div id="first">
+			<h2>文章一级标题</h2>
+			<h3>文章二级标题</h3>
+			<span class="author">文章作者</span>
+			<span class="date">文章发表时间</span>
+			<p>这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，换行了
+			<br>
+            这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，换行了
+            <br>
+            这是一个很长很长的段落，这是一个很长很长的段落，<a href="http://ife.baidu.com">这里有个链接打开网页</a>这是一个很长很长的段落，这是一个很长很长的段落，<strong>这里有个粗体字</strong>这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落。
+            </p>
+            <img src="image/1.jpg">
+            <p>
+            	这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落。
+            	<br>
+            	这是一个很长很长的段落，这是一个很长很长的段落，<a href="http://ife.baidu.com">这里有个链接打开网页</a>这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，
+            	<strong> 这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，</strong>这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落。
+            </p>
+		</div>
+		<div id="second">
+		    <h2>另一文章一级标题</h2>
+			<h3>文章二级标题</h3>
+			<span class="author">文章作者</span>
+			<span class="date">文章发表时间</span>
+			<p>这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，换行了
+			<br>
+            这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，换行了
+            <br>
+            这是一个很长很长的段落，这是一个很长很长的段落，<a href="http://ife.baidu.com">这里有个链接打开网页</a>这是一个很长很长的段落，这是一个很长很长的段落，<strong>这里有个粗体字</strong>这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落，这是一个很长很长的段落。
+            </p>
+            <img src="image/1.jpg">
+            <ul>
+            	<li>列表项目一</li>
+            	<li>列表项目二</li>
+            	<li>列表项目三</li>
+            </ul>
+			
+		</div>
+		<div id="third">
+		     <h1>图片</h1>
+		     <div class="picture">
+		         <span>路飞的对话</span>
+		         <img src="image/1.jpg">		     	
+		     </div>
+		      <div class="picture">
+		         <span>幸福一家人</span>
+		         <img src="image/2.jpg">		     	
+		     </div>
+		      <div class="picture">
+		         <span>孤独的小猪</span>
+		         <img src="image/3.jpg">		     	
+		     </div>
+		      <div class="picture">
+		         <span>倒立</span>
+		         <img src="image/4.jpg">		     	
+		     </div>
+		      <div class="picture">
+		         <span>路飞的对话</span>
+		         <img src="image/5.jpg">		     	
+		     </div>		      
+			
+		</div>
+		<div id="fourth">
+			<h2>文章一级标题</h2>
+			<h3>文章二级标题</h3>
+			<span class="author">文章作者</span>
+			<span class="date">文章发表时间</span>
+			<ol>
+				<li>排名1</li>
+				<li>排名2</li>
+				<li>排名3</li>
+			</ol>
+			<span>下面是一个表格</span>
+			<table>
+				<tr>
+					<th>名称</th>
+					<th>性别</th>
+					<th>队名</th>
+				</tr>
+				<tr>
+					<td>郑春辉</td>
+					<td>男</td>
+					<td><a href=""> Betagogo</td>
+				</tr>
+				<tr>
+					<td>黎艳秋</td>
+					<td>女</td>
+					<td><a href=""> Betagogo</td>
+				</tr>
+				<tr>
+					<td>井文婷</td>
+					<td>女</td>
+					<td><a href=""> Betagogo</td>
+				</tr>
+				<tr class="count">
+					<td>总计</td>
+					<td colspan="2">3</td>
+				</tr>
+			</table>
+		</div>
+		<div id="fifth">
+			<h2 class="h-aside">这是一个侧栏</h2>
+			<form>
+				<div class="form-group">
+					<label>请输入邮箱地址</label>
+					
+					<input class="input-control right" placeholder="这是一个文本输入框" name="email"></input>
+				</div>	
+				<span>邮箱地址请按要求格式输入</span>
+				<div class="form-group">
+					<label>请输入密码</label>
+					
+					<input class="input-control right" type="password" name="password"></input>
+				</div>
+				<div class="form-group">
+					<label>请重复输入密码</label>
+					
+					<input class="input-control right" type="password" name="repassword"></input>
+				</div>
+				<span>密码为6-16位英文数字</span>
+				<div class="form-group">
+					<label>性别</label>
+					
+					<input class="right" type="radio" name="sex" value="0" checked="true">男</input>
+					<input type="radio" name="sex" value="1">女</input>
+				</div>	
+				<div class="form-group">
+					<label>城市</label>
+					
+					<select class="right" name="city">
+						<option value="1">北京</option>
+						<option value="2">上海</option>
+						<option value="3">深圳</option>
+						<option value="4">广州</option>
+						<option value="5">天津</option>
+						<option value="6">青岛</option>
+					</select> 
+				</div>
+				<div class="form-group">
+					<label>爱好</label>
+					
+					<input class="right" type="checkbox" name="hobby">运动</input>
+					<input type="checkbox" name="hobby">艺术</input>
+					<input type="checkbox" name="hobby">科学</input>
+				</div>
+				<div class="form-group">
+					<label class="label-vertical">个人描述</label>
+					
+					<textarea class="right" name="describe">这是一个多行输入框</textarea>
+				</div>	
+				<button>确认提交</button>			
+			</form>
+			
+		</div>
+	</div>
+	<footer>
+		版权所有@
+	</footer>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 02_19</title>
+
+    <style type="text/css">
+    #show{
+      height: 350px;
+      position: relative;;
+    }
+      #show div{    	
+      	float: left;
+      	width: 20px;
+        /*margin: 10px;*/
+        position: absolute;
+        bottom: 0;
+      }
+      .nomal{
+        background:#99b4ce; 
+      }
+      .swap{
+        background: #d7f0f8;
+      }
+      .wait{
+        background: #b38e95;
+      }
+      
+    </style>
+  </head>
+<body>
+<div id="operate">
+  <input id="num-input" type="text"></input>  
+  <button id="leftIn">左侧入</button>
+  <button id="rightIn">右侧入</button>
+  <button id="leftOut">左侧出</button>
+  <button id="rightOut">右侧出</button>
+  <button id="random">随机产生</button>
+  <button id="delete">删除数据</button>
+  <button id="bubble">冒泡</button>
+</div>
+<div id="show">
+	
+</div>
+<script type="text/javascript">
+/***
+   数据存放在数组；
+   排序每intervalTime时间做一次比较，如果需要交换，两个div的高度动态减少或增加，约每 intervalTime/10时间内增加（减少一次）； 
+   点击删除事件使用事件委托，事件加载在show上
+   将要比较的div颜色为 wait，正在交换的div颜色为swap，已经比较过或位置不会再动的div颜色为nomal
+**/
+var colors = ['#d7f0f8','#99b4ce', '#9ea7bb', '#bec3cb', '#c1b9c2','#edae9e', '#b38e95','#5a4563','#4e4a67'];
+
+    var numArray=[];
+    var intervalTime=100;//排序时的运行时间间隔
+    var operate=document.getElementById("operate");
+    var show=document.getElementById("show");
+    var isSwap =false;
+
+    
+    String.prototype.trim=function(){
+　　    return this.replace(/(^\s*)|(\s*$)/g, "");
+　　 }
+    $ = function (el) { return document.querySelector(el); };
+    $$ = function (el) { return document.querySelectorAll(el); };
+
+    
+    //事件跨浏览器
+    var EventUtil={
+    	addHandler:function(element,type,handler){
+           if (element.addEventListener) {
+           	 element.addEventListener(type,handler,false);
+           }else if (element.attachEvent) {
+           	  element.attachEvent("on"+type,handler);
+           }else{
+           	 element["on"+type]=handler;
+           }
+    	},
+
+    	removeHandler:function(element,type,handler){
+           if (element.removeEventListener) {
+           	  element.removeEventListener(type,handler,false);
+           }else if (element.detachEvent) {
+           	   element.detachEvent("on"+type,handler);
+           }else{
+           	   element["on"+type]=null;
+           }
+    	},
+
+        getEvent:function(event){
+        	return event ? event : window.event;
+        },
+
+    	getTarget:function(event){
+            return event.target||event.srcElement;
+    	}
+    }
+
+    
+
+    //按钮事件监听，处理数据并渲染
+    function handler(event){
+        if (isSwap) {
+          alert('正在排序');
+          return;
+        }
+         event=EventUtil.getEvent(event);
+         var target=EventUtil.getTarget(event);
+         // alert(target);
+         var inputValue=document.getElementById("num-input").value.trim();
+
+
+         switch(target.id){
+         	case "leftIn":
+	         	if (vertify(inputValue)) {
+              if (numArray.length>=60) {
+                 alert("您输入的数字已经超过60个！")
+              }else{
+                numArray.unshift(inputValue); 
+                render();
+              }         		                            		
+	         	}                
+                break;
+         	case "rightIn":
+         	if (vertify(inputValue)) {
+            if (numArray.length>=60) {
+                 alert("您输入的数字已经超过60个！")
+              }else{
+                numArray.push(inputValue);
+                render();
+              }   	         		
+	         	} 
+                break;
+         	case "leftOut":         	
+                numArray.shift();
+                render();
+                break;
+         	case "rightOut":
+                numArray.pop();
+                render();             
+                break;
+          case "random":
+                numArray= randomNum(numArray);
+                render();
+                break;
+          case "bubble":
+               bubble(numArray);
+               // render(numArray);
+               break;
+          case "delete":
+               numArray=[];
+               render();
+         	default:
+         	   break;
+
+         }                        
+    }
+
+ //冒泡排序
+    function bubble(numArray){
+      isSwap = true;
+      var num,i=0,l=numArray.length,j=0;
+      renderWait(l);
+      var timer=function(){
+        if (j<l-i-1) {
+          if(numArray[j]>numArray[j+1]){
+              num=numArray[j+1];
+              numArray[j+1]=numArray[j];
+              numArray[j]=num;
+              renderSwap(j);
+          }else{
+              $$('#show div')[j].className="nomal";
+          }           
+          j++;
+        }else{ 
+          $$('#show div')[j].className="nomal";
+          i++;
+          j=0;  
+          renderWait(l-i);           
+        }
+                    
+        if (i<l) {
+          setTimeout(arguments.callee,intervalTime);
+        }else{
+          isSwap=false;
+        }
+    } 
+    setTimeout(timer,intervalTime); 
+  }
+
+
+  //设置为等待处理的颜色
+  function renderWait(right){
+     for (var i = 0; i < right; i++) {
+        $$('#show div')[i].className="wait";
+     }
+
+  }
+
+ //数据交换时的处理，动画效果
+    function renderSwap(position){
+        var difference=numArray[position]-numArray[position+1];
+        var beforeDiv=$$('#show div')[position];
+        var afterDiv=$$('#show div')[position+1];
+        beforeDiv.className="swap";
+        afterDiv.className="swap";
+        var swapTime=Math.floor((intervalTime-3)/10);
+        var time=1;//增长循环次数
+
+         function heightChange(){
+            if (time<10) {
+               beforeDiv.style.height=(numArray[position+1]+Math.floor(difference/10)*time)*3+"px";
+               afterDiv.style.height=(numArray[position]-Math.floor(difference/10)*time)*3+"px";
+            }else if (time==10) {
+               beforeDiv.style.height=numArray[position]*3+"px";
+               afterDiv.style.height=numArray[position+1]*3+"px";
+               $$('#show div')[position].className="nomal";
+            }
+
+            time++;
+            if (time<=10) {
+              setTimeout(heightChange,swapTime);
+            }
+             
+         }
+         setTimeout(heightChange,swapTime);
+    }
+
+  //产生随机数组
+  function randomNum(numArray){
+    for (var i = 0; i < 30; i++) {
+      numArray[i]=Math.floor(Math.random()*90+10);
+
+    }
+    return numArray;
+  }
+
+//渲染列表,整体重新渲染
+    function render(){      
+       var str="";
+       var left=0;
+       for (var i = 0,l=numArray.length; i < l; i++) {
+
+       	 str+="<div class='nomal' style=';height:"+numArray[i]*3+"px;left:"+left+"px'></div>";
+         left+=30;
+       }
+       show.innerHTML=str;
+       str="";
+    }
+
+    //数据验证
+    function vertify(value){
+       if (value=="") {
+       	 alert("输入不能为空");
+       	 return false;
+       }else if (!value.match(/^[0-9]*$/)) {
+       	 alert("输入必须为数字");
+       	 return false;
+       }else if (parseInt(value)<10||parseInt(value)>99) {
+         alert("输入值必须为10-100之间");
+         return false;
+       }
+       return true;
+    }
+
+    //加删除元素事件(整体)
+    function deleteEvent(event){
+          event=EventUtil.getEvent(event);
+          var target=EventUtil.getTarget(event);
+          var position=getClickIndex(target);
+          if (position>-1) {
+              numArray.splice(position,1);
+              render();
+          }		
+    	}      
+
+  //获取点击元素的位置
+    function getClickIndex(node) {
+      if (node.id == "show"){
+          return -1;
+      }else{
+        return Array.prototype.indexOf.call(node.parentNode.children, node);
+      }
+      
+    }
+
+
+    EventUtil.addHandler(show,"click",deleteEvent);
+    EventUtil.addHandler(operate,"click",handler);
+    
+</script>
+</body>
+</html>
